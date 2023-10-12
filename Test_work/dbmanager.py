@@ -4,10 +4,19 @@ import sqlite3
 
 class DatabaseHandler:
     def __init__(self, db_name):
+        """
+        Инициализация объекта для работы с базой данных.
+
+        Args:
+            db_name (str): Имя файла базы данных SQLite.
+        """
         self.db_name = db_name
         self.conn = None
 
     def create_tables(self):
+        """
+        Создает таблицы в базе данных, если они не существуют.
+        """
         self.conn = sqlite3.connect(self.db_name)
         cursor = self.conn.cursor()
 
@@ -36,6 +45,15 @@ class DatabaseHandler:
         self.conn.commit()
 
     def import_data_from_xlsx(self, xlsx_file):
+        """
+        Импортирует данные из файла XLSX в базу данных и заносит уникальные страны и производителей.
+
+        Args:
+            xlsx_file (str): Путь к файлу XLSX с данными.
+
+        Raises:
+            Exception: В случае ошибки при импорте данных.
+        """
         try:
             df = pd.read_excel(xlsx_file)
 
@@ -64,6 +82,12 @@ class DatabaseHandler:
             print(f"Произошла ошибка при импорте данных из файла XLSX: {e}")
 
     def count_goods_per_country(self):
+        """
+        Подсчитывает количество товаров по странам и возвращает результат.
+
+        Returns:
+            list of tuple: Список кортежей, где каждый кортеж содержит имя страны и количество товаров.
+        """
         cursor = self.conn.cursor()
         cursor.execute('''
             SELECT GOODS.NAME_COUNTRY, COUNT(GOODS.ID_TOVAR)
@@ -74,4 +98,7 @@ class DatabaseHandler:
         return result
 
     def close(self):
+        """
+        Закрывает соединение с базой данных.
+        """
         self.conn.close()
