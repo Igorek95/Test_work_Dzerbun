@@ -7,4 +7,4 @@
 1. Клонируйте репозиторий:
 
    ```bash
-   git clone https://github.com/yourusername/your-repo.git
+   git clone https://github.com/Igorek95/Test_work_Dzerbun
