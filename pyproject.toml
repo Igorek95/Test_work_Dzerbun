@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "Test_work"
+version = "0.1.0"
+description = "test task of processing an xlsx file and working with a database"
+authors = ["Dzerbun Igor"]
+
+[tool.poetry.dependencies]
+python = "3.10.12"
+pandas = "^2.1.1"
+openpyxl= "3.1.2"
+
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
